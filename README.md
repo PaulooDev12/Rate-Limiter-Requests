@@ -27,16 +27,16 @@
 <p>Ao testar em front-end enfrentamos o problema de bloqueio do cors <br> 
 como na versão atual não há uma configuração para cors temos dois caminhos à seguir
 
-<h4>Caminho 1: Liberar todas as origens (Mais fácil)></h4>
+<h3>Caminho 1: Liberar todas as origens (Mais fácil)></h3>
 <pre>
   @CrossOrigin(origins = "*")
 </pre>
 
-<h4>Caminho 2: Configurar o WebMvcConfigurer (Recomendando se tiver mais de um Controller)</h4>
+<h3>Caminho 2: Configurar o WebMvcConfigurer (Recomendando)</h3>
 <p>Se você optar por criar mais de um RestController para mais consultas na aplicação, siga os seguintes passos</p>
 <ul>
-<li>Crie um arquivo dentro com nome da sua escolha ao final</li>
-<li>Adicione o seguinte Conteúdo</li>
+<li>Crie um arquivo de configuração com o nome de sua preferência</li>
+<li>Adicione o seguinte conteúdo</li>
 </ul>
 <pre>
   @Configuration // indica que é uma configuração
