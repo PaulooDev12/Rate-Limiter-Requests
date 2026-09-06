@@ -10,4 +10,5 @@ import java.lang.annotation.Target;
 public @interface RateLimit {
     int maxRequests() default 3;
     int windowInSeconds() default 30;
+    String key() default "";
 }
