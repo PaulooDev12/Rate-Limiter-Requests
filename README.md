@@ -27,7 +27,7 @@
 <p>Ao testar em front-end enfrentamos o problema de bloqueio do cors <br> 
 como na versão atual não há uma configuração para cors temos dois caminhos à seguir
 
-<h3>>Caminho 1: Liberar todas as origens (Mais fácil)</h3>
+<h3>Caminho 1: Liberar todas as origens (Mais fácil)</h3>
 <p>No Controller adicione a seguinte anotação</p>
 <pre>
   @CrossOrigin(origins = "*")
