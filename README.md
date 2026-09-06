@@ -5,7 +5,7 @@
   <img src="https://img.shields.io/badge/Rate_Limit-Bucket4j-purple?logo=apache" alt="Rate Limiting" />
   <br>
     <img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white" alt="Redis" />
-  <img src="https://img.shields.io/badge/Spring%20Boot-4.0.2-ED8B00?style=for-the-badge&labelColor=6db33f&color=808080&logo=Spring%20Boot&logoColor=white" alt="Spring Boot Version" />
+  <img src="https://img.shields.io/badge/Spring%20Boot-4.1.1-ED8B00?style=for-the-badge&labelColor=6db33f&color=808080&logo=Spring%20Boot&logoColor=white" alt="Spring Boot Version" />
 </p>
 
 -------
