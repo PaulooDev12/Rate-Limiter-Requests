@@ -13,7 +13,7 @@
 <ul>
   <li>Clone o repositório</li>
   <li>Vá até a pasta do mesmo</li>
-  <li>rode o projeto</li>
+  <li>Execute o projeto</li>
 </ul>
 <p>Exemplo detalhado: </p>
 <pre>
