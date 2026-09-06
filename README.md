@@ -63,5 +63,6 @@ como na versão atual não há uma configuração para cors temos dois caminhos 
   <li>React: http://localhost:5173</li>
   <li>Vue: http://localhost:5173</li>
   <li>NextJs: http://localhost:3000</li>
+  <li>HTML com live server: http://127.0.0.1:5500</li>
 </ul>
 </p>
