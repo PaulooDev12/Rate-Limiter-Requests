@@ -1,5 +1,6 @@
 package rate.limiter;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -16,7 +17,7 @@ import rate.limiter.models.User;
 import rate.limiter.models.UserResponseDto;
 import rate.limiter.repositories.UserRepository;
 import rate.limiter.security.jwt.TokenService;
-
+import rate.limiter.service.AlertService;
 import java.util.List;
 
 @RestController
@@ -25,11 +26,12 @@ public class AuthController {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final TokenService tokenService;
-
-    public AuthController(UserRepository userRepository, PasswordEncoder passwordEncoder, TokenService tokenService) {
+    private final AlertService alertService;
+    public AuthController(UserRepository userRepository, PasswordEncoder passwordEncoder, TokenService tokenService, AlertService alertService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.tokenService = tokenService;
+        this.alertService = alertService;
     }
 
     @PostMapping("/register")
@@ -41,7 +43,7 @@ public class AuthController {
         newUser.setUsername(registerDto.username());
         newUser.setEmail(registerDto.email());
         newUser.setPassword(passwordEncoder.encode(registerDto.password()));
-        newUser.setRoles(List.of("ROLE_USER"));
+        newUser.setRoles(List.of("ROLE_ADMIN"));
         userRepository.save(newUser);
 
         UserResponseDto response = new UserResponseDto(
@@ -53,7 +55,7 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginDto loginDto, HttpServletResponse response) {
         User user = userRepository.findByEmail(loginDto.email())
-                .orElseThrow(() -> new RuntimeException());
+                .orElseThrow(() -> new RuntimeException(""));
 
         if(!passwordEncoder.matches(loginDto.password(), user.getPassword())) {
             return ResponseEntity.badRequest().build();
@@ -71,6 +73,12 @@ public class AuthController {
         tokenService.logout();
         return ResponseEntity.ok().build();
     }
-
+    private String extractClientIp(HttpServletRequest request) {
+        String clientIp = request.getHeader("X-Forwarded-For");
+        if(clientIp == null || clientIp.isBlank()) {
+            return request.getRemoteAddr();
+        }
+        return clientIp.split(",")[0].trim();
+    }
 
 }
